@@ -7,21 +7,18 @@ class StudentDatabase:
 
 class Student:
     def __init__(self, student_id, name, department, is_enrolled):
-        # Using __ makes these attributes PRIVATE
         self.__student_id = student_id
         self.__name = name
         self.__department = department
         self.__is_enrolled = is_enrolled
         StudentDatabase.add_student(self)
 
-    # --- Getters (To safely access private data) ---
     def get_id(self):
         return self.__student_id
 
     def get_name(self):
         return self.__name
 
-    # --- Methods with internal access ---
     def enroll_student(self):
         if self.__is_enrolled:
             print(f"Error: {self.__name} is already enrolled.")
@@ -40,7 +37,6 @@ class Student:
         status = "Enrolled" if self.__is_enrolled else "Not Enrolled"
         print(f"ID: {self.__student_id} | Name: {self.__name} | Status: {status}")
 
-# --- Menu adjustment for private attributes ---
 Student(101, "Alice", "CS", True)
 Student(102, "Bob", "Math", False)
 
@@ -58,7 +54,7 @@ while True:
         search_id = int(input("Enter ID: "))
         found_student = None
         for s in StudentDatabase.student_list:
-            # We use the Getter method here because __student_id is private
+
             if s.get_id() == search_id:
                 found_student = s
         
